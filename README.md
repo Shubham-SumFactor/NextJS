@@ -1,6 +1,5 @@
 # NextJS
 
-# NextJS
 
 ## What is Next JS=>
  React framework for production => render content on the server
@@ -29,3 +28,4 @@ front + backend (node server)
 
 *E* **Serverless FN**: 
 > invoke server => execute => execute => shutdown // no activity, shutdown !!
+NextJS Section3
