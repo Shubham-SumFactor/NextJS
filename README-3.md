@@ -33,18 +33,26 @@ NextJS Section3
 3 location based navigation etc 
 
 ## Create-Next-App Directory Structure 
->package.json 
+>*package.json* => scripts and project Dependencies
 >
->Node_modules
+>*Node_modules* => All Dependencies
 >
->pages
-1 api
-2 _app.js
-3 index.js
+>*pages* ==>
+1 api => Backend API
+2 _app.js => Entry pt
+3 index.js => Default Route 
 >
->public
+>*public* => All Static Files
 >
->styles
-1 global.css 
-2 home.module.css
->.next
+> *styles* ==>
+1 global.css => applied throughout
+2 home.module.css => applicable to home only
+>
+> *.next* => gets auto generated
+>
+
+## *folder _app.js* => 
+>is an entry pt => provide wrapper to all / available in all pages
+
+## *Pages Folder*
+>has the ability to create the default routing for the pages created
