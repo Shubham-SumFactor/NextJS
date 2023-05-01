@@ -28,4 +28,4 @@ front + backend (node server)
 > HTML syntax description =>  rank your page 
 
 *E* **Serverless FN**: 
-> invoke server => execute => execute => shutdown // no activity, shutdown 
+> invoke server => execute => execute => shutdown // no activity, shutdown !!
