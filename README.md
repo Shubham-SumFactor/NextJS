@@ -11,7 +11,7 @@ front + backend (node server)
 *a*. **Rendering technique** 
 > i. Static site generation => pre-built on sever then pass to a client (cached content)
 >
-> ii server-side rendering => Netflix => re-fetching the data
+> ii server-side rendering => Netflix => re-fetching the data!
 >
 > iii Incremental Site Regeneration => STATIC + SERVICE-SIDE => 
 
