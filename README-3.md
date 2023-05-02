@@ -56,3 +56,26 @@ NextJS Section3
 
 ## *Pages Folder*
 >has the ability to create the default routing for the pages created
+
+## *FAST REFRESH*
+> apply the changes made to the code and reflect it simulatneously to the local machine running project on browser
+>
+> Also reflect the errors made
+
+## CSS Module
+> has suffix *module.css*
+>
+> confined to particular page // not implemented on all
+>
+
+## Created hello.module.css and aboutus.module.css
+
+> to Import : import styles from '@/styles/Aboutus.module.css';
+>
+
+## Editing the Home PAge 
+
+## Editing background of the home page
+> Edited the background by choosing the png format bg-pic
+>bg-pic is placed under the public folder / we have created a sub-folder static
+>Edited the home.module.css // title attribute added
