@@ -79,3 +79,8 @@ NextJS Section3
 > Edited the background by choosing the png format bg-pic
 >bg-pic is placed under the public folder / we have created a sub-folder static
 >Edited the home.module.css // title attribute added
+
+## BAnner Component
+> banner component has been inserted via banner.js and banner.module.css
+>
+>Styling has been implemented for mobile view as breakpoints in global css  
