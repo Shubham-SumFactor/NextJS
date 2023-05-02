@@ -7,6 +7,26 @@
   min-height: 100vh;
 }
 
+
+
+.title a{ 
+  color:aquamarine;
+  text-decoration: solid;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active{
+  text-decoration: underline;
+}
+
+.title{
+  margin: c;
+  line-height: 1.15;
+  font-size: 5rem;
+}
+
+
 .description {
   display: inherit;
   justify-content: inherit;
