@@ -15,15 +15,25 @@ export default function Home() {
   }
   
   return (
-    <div className={styles.main}>
+    
+    <div className={styles.container}>
+
       <Head>
+
         <title>Coffee Connoisseur</title>
         <link rel="icon" href="/favicon.ico" />
+
       </Head>
 
       <main className={styles.main}>
     
       <Banner buttonText ="View Stores Nearby" handleOnClick={handleOnBannerBtnClick}/>
+      
+     
+     <div className={styles.heroImage}>
+            <Image src="/static/hero.jpeg" width={700} height={400} />
+      </div>
+      
       </main>
     
     </div>
