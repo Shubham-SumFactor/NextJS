@@ -7,8 +7,12 @@ NextJS Section 4
 # Hero Image Genearator => ICons8
 
 > large banner img use in a web page
+>
 > Adding hero component
+>
 > Adding Image Component in NEXTjs => lazy loads 
 download content on demand
+>
 >hero image on home page
+>
 >import Image from 'next/image'
