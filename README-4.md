@@ -20,3 +20,13 @@ and /12234566 is the nested route for the coffee-store
 > to read value from the URL => nextJS provide Hook "next/route"
 >/coffee-store/abc => abc is the id => {router.query.id}
 >import { useRouter } from "next/router";
+
+## Link Component 
+**Two Types OF Linking**
+>
+>- Non Dynamic/ known pages => < Link href="/">< /Link > basically changes route to another page without refresh 
+>- Dynamic pages
+
+## Exercise 
+> non dynamic routing for courses/nextjs and dynamic routing for localhost:3000/
+> use of Head Component
