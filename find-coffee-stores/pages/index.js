@@ -31,7 +31,7 @@ export default function Home() {
       
      
      <div className={styles.heroImage}>
-            <Image src="/static/hero.jpeg" width={700} height={400} />
+            <Image src="/static/hero.png" width={700} height={400} />
       </div>
       
       </main>
