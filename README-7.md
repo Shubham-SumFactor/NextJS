@@ -13,3 +13,12 @@
 > card Component Styling 
 > Grid Layput for card componenet 
 
+## Rendering through static site generation
+ 
+> -using getStaticProps
+> Rules => can be only exported from a page file 
+> meant for all routes 
+> on code we pre-rendered on page i.e. we pre-rendered homepage
+> We've set the getStaticProp  
+
+## Static Props
