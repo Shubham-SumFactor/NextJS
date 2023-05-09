@@ -15,19 +15,15 @@ export function getStaticProps(staticProps){
     };
 }
 
-export function getStaticPaths(){
-    const paths =CoffeeStore.map(CoffeeStore => {
-            return {
-                params: {
-                    id :CoffeeStore.id.toString,
-                },
-            }
-    })
+export function getStaticPaths() {
+    const paths = CoffeeStoreData.map((CoffeeStore) => {
+        return {
+            params: {
+                id: CoffeeStore.id.toString(),
+            },
+        }
+    });
     return { paths,
-    /*    paths: [
-            { params: { id :'0' }},
-            { params: { id :'1' }},
-        ],*/
          fallback: true,
     };
 }
@@ -44,8 +40,9 @@ const CoffeeStore = (props) =>{
 
     console.log("props",props);
 
-    return <div>
+    return (<div>
         <Head><title>{name}</title></Head>
+   
     <Link href ="/">  
    Back To home  
     </Link>
@@ -55,7 +52,7 @@ const CoffeeStore = (props) =>{
     <p>{name}</p>
     <p>{neighbourhood}</p>
     </div>
-    
+    );
 };
 
 export default CoffeeStore;
