@@ -22,3 +22,25 @@
 > We've set the getStaticProp  
 
 ## Static Props
+=> pre-rendering dynamic route
+=> Two rules
+-
+-can be exported from a page file only 
+-meant for dynamic routes
+-page must also implement getStaticProps
+
+
+ ##Characteristics of getStaticPath
+
+ => fallback key must be returned from getStaticPaths
+
+ ## Fallback 
+ > a fallback page is a special page that is dynamically generated at runtime for a specific route when that route doesn't have a corresponding pre-rendered page.
+
+=> False => gives that error 404 page
+=> true => checks that if route exist in getStaticPaths ==> if no then loads then reflect | downloaded on the go which is not pre-rendered || download then its cached => else undefined
+==>useful when have a lot of static path
+
+-    if (router.isFallback){
+        return <div>Loading....</div>
+    } needs a loading time to doenloaded 
