@@ -13,6 +13,20 @@ const inter = Inter({ subsets: ['latin'] })
 
 export async function getStaticProps(context) { //server side
 
+
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: 'fsq3gGmpyZKWyMXSwBdL0eT+02aoBk/bbHTELb9Hj+KYdyA='
+    }
+  };
+  
+  fetch('https://api.foursquare.com/v3/places/search?query=coffee%20&ll=43.66648830062341%2C-79.41309107123831&limit=6', options)
+    .then(response => response.json())
+    .then(response => console.log(response))
+    .catch(err => console.error(err));
+    
   return {
     props: {
       CoffeeStores: CoffeeStoresData,
