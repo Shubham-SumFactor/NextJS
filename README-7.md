@@ -43,4 +43,8 @@
 
 -    if (router.isFallback){
         return <div>Loading....</div>
-    } needs a loading time to doenloaded 
+    } needs a loading time to downloaded 
+
+## REfactor   => destructor the prop
+
+## Adding icons into the dynamic pages with place . rating and meighborhood mentioned 
