@@ -18,18 +18,19 @@ export async function getStaticProps(context) { //server side
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'fsq3gGmpyZKWyMXSwBdL0eT+02aoBk/bbHTELb9Hj+KYdyA='
+      Authorization: process.env.FOURSQUARE_API_KEY
     }
   };
   
-  fetch('https://api.foursquare.com/v3/places/search?query=coffee%20&ll=43.66648830062341%2C-79.41309107123831&limit=6', options)
-    .then(response => response.json())
-    .then(response => console.log(response))
-    .catch(err => console.error(err));
-    
+  const response = await fetch('https://api.foursquare.com/v3/places/search?query=coffee%20&ll=43.66648830062341%2C-79.41309107123831&limit=6', options);
+  
+  const data = await response.json();
+ 
+   // .catch(err => console.error(err));
+
   return {
     props: {
-      CoffeeStores: CoffeeStoresData,
+      CoffeeStores: data.results ,
     }, //will be passed to the page components as props
   };
 }
@@ -70,10 +71,11 @@ export default function Home(props) { //client side
             
            return (
            <Card  
-           key ={CoffeeStore.id}
+           key ={CoffeeStore.fsq_id}
            name={CoffeeStore.name}
-           imgUrl={CoffeeStore.imgUrl}
-           href={`/coffee-store/${CoffeeStore.id}`}
+           imgUrl={CoffeeStore.imgUrl ||
+             "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"}
+           href={`/coffee-store/${CoffeeStore.fsq_id}`}
            />
             );
             
