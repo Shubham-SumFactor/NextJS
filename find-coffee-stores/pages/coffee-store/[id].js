@@ -7,25 +7,29 @@ import Image from "next/image";
 
 import styles from '../../styles/coffee-store.module.css'
 import cls from "classnames";
+//import { fetchCoffeeStores } from "@/lib/coffee-store";
+import { fetchCoffeeStores } from "../../lib/coffee-store";
 
-
-export function getStaticProps(staticProps){
+export async function getStaticProps(staticProps){
     const params = staticProps.params;
-
+  
+    const CoffeeStores = await fetchCoffeeStores();
+  
     return {
         props: {
-            CoffeeStore : CoffeeStoreData.find((CoffeeStore) =>{
-                return CoffeeStore.id.toString() === params.id; //dynamic id
+            CoffeeStore : CoffeeStores.find((CoffeeStore) =>{
+                return CoffeeStore.fsq_id.toString() === params.id; //dynamic id
             }),
         },
     };
 }
 
-export function getStaticPaths() {
-    const paths = CoffeeStoreData.map((CoffeeStore) => {
+export async function getStaticPaths() {
+    const CoffeeStores = await fetchCoffeeStores();
+    const paths = CoffeeStores.map((CoffeeStore) => {
         return {
             params: {
-                id: CoffeeStore.id.toString(),
+                id: CoffeeStore.fsq_id.toString(),
             },
         }
     });
@@ -65,7 +69,7 @@ const CoffeeStore = (props) =>{
             <div className={styles.nameWrapper}>
                 <h1 className={styles.name}>{name}</h1>
             </div>
-            <Image src = {imgUrl}
+            <Image src = {imgUrl || "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"} 
              width={600} 
              height={360}
               className={styles.storeImg} 
