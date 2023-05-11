@@ -1,8 +1,25 @@
+import { createApi } from 'unsplash-js';
+//import nodeFetch from 'node-fetch';
+
+const unsplash = createApi({
+  accessKey: process.env.UNSPLASH_API_KEY,
+  
+});
+
+
 const getUrlForCoffeeStores = (latlong, query, limit) =>{
     return `https://api.foursquare.com/v3/places/search?query=${query}&ll=${latlong}&limit=${limit}`
 }
 
 export const fetchCoffeeStores = async () => {
+
+  const photos= await unsplash.search.getPhotos({
+    query: 'coffee shop',
+    page: 1,
+    perPage: 30,
+
+  });
+  console.log({ photos })
     const options = {
         method: 'GET',
         headers: {
