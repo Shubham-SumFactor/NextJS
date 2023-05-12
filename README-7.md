@@ -47,4 +47,12 @@
 
 ## REfactor   => destructor the prop
 
-## Adding icons into the dynamic pages with place . rating and meighborhood mentioned 
+## Adding icons into the dynamic pages with place . rating and neighborhood mentioned 
+
+## FourSquare and API
+> Rate Limiting => limiting the number of API request a client/user can make.
+> Fetch => allow invoke any url and get a response or error.{call server and retrieve}
+> Env local and Env Next.config.js
+> neighborhood not available added formatted_address in [id].js
+
+> Unsplash => npm i --save unsplash-js
