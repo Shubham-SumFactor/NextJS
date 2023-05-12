@@ -18,7 +18,7 @@ export async function getStaticProps(staticProps){
     return {
         props: {
             CoffeeStore : CoffeeStores.find((CoffeeStore) =>{
-                return CoffeeStore.fsq_id.toString() === params.id; //dynamic id
+                return CoffeeStore.id.toString() === params.id; //dynamic id
             }),
         },
     };
@@ -29,13 +29,14 @@ export async function getStaticPaths() {
     const paths = CoffeeStores.map((CoffeeStore) => {
         return {
             params: {
-                id: CoffeeStore.fsq_id.toString(),
-            },
+                id: CoffeeStore.id.toString(),
+            }
         }
     });
+
     return { paths,
          fallback: true,
-    };
+    }
 }
 
 const CoffeeStore = (props) =>{
@@ -46,7 +47,7 @@ const CoffeeStore = (props) =>{
         return <div>Loading....</div>
     }
 
-    const {location, name,  imgUrl} = props.CoffeeStore;
+    const {name, address , formatted_address, imgUrl} = props.CoffeeStore;
 
     const handleUpvoteButton = () => {
         console.log("handle Upvote")
@@ -63,7 +64,7 @@ const CoffeeStore = (props) =>{
    <div className={styles.col1}>
    <div className={styles.backToHomeLink}>
     <Link href ="/"> 
-     Back To home 
+    Back To home   
       </Link> </div>
 
             <div className={styles.nameWrapper}>
@@ -78,17 +79,20 @@ const CoffeeStore = (props) =>{
     </div>
 
     <div className={cls("glass",styles.col2)}>
-
+       {address && (
         <div className={styles.iconWrapper}>
             <Image src="/static/icons/places.svg" width="24" height="24"/>
-            <p className={styles.text}>{location.address}</p>
+            <p className={styles.text}>{address}</p>
         </div>
+        )}
+        {formatted_address &&(
         <div className={styles.iconWrapper}>
             <Image src="/static/icons/nearMe.svg" width="24" height="24"/>
             
-        <p className={styles.text}>{location.formatted_address}</ p>
+        <p className={styles.text}>{formatted_address}</ p>
         
         </div>
+    )}
         <div className={styles.iconWrapper}>
             <Image src="/static/icons/star.svg" width="24" height="24"/>
             <p className={styles.text}>1</p>
