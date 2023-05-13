@@ -8,7 +8,7 @@ import Card from "../components/card";
 //import { fetchCoffeeStores } from '@/lib/coffee-store';
 import { fetchCoffeeStores } from '../lib/coffee-store';
 import CoffeeStoresData from '../data/coffee-stores.json';
-
+import useTrackLocation from '@/hooks/use-track-location';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,9 +27,17 @@ export async function getStaticProps(context) { //server side
 
 export default function Home(props) { //client side
   
+ 
+ const { handleTrackLocation, latLong, locationErrorMsg, isFindingLocation } = useTrackLocation();
+
+ console.log({latLong, locationErrorMsg});
+
   const handleOnBannerBtnClick =() =>{
-    console.log("BAnner Button")
-  }
+    console.log("Banner Button")
+    handleTrackLocation();
+
+
+  };
   
   return (
     
@@ -44,8 +52,9 @@ export default function Home(props) { //client side
 
       <main className={styles.main}>
     
-      <Banner buttonText ="View Stores Nearby" handleOnClick={handleOnBannerBtnClick}/>
-      
+      <Banner buttonText ={isFindingLocation ? "Locating..." : "View Stores Nearby"} handleOnClick={handleOnBannerBtnClick}/>
+      {locationErrorMsg}
+     
      
      <div className={styles.heroImage}>
             <Image src="/static/hero.png" width={680} height={300} />
