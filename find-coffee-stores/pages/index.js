@@ -36,7 +36,6 @@ export default function Home(props) { //client side
     console.log("Banner Button")
     handleTrackLocation();
 
-
   };
   
   return (
@@ -53,13 +52,15 @@ export default function Home(props) { //client side
       <main className={styles.main}>
     
       <Banner buttonText ={isFindingLocation ? "Locating..." : "View Stores Nearby"} handleOnClick={handleOnBannerBtnClick}/>
-      {locationErrorMsg}
+    
+      {locationErrorMsg && <p>Something Went Wrong:{locationErrorMsg}</p>}
      
      
      <div className={styles.heroImage}>
             <Image src="/static/hero.png" width={680} height={300} />
       </div >
-      {props.CoffeeStores.length > 0 && (<>
+      {props.CoffeeStores.length > 0 && (
+      <div className={styles.sectionWrapper}>
       
       <h2 className={styles.heading2}>Toronto Stores</h2>
      
@@ -69,18 +70,18 @@ export default function Home(props) { //client side
             
            return (
            <Card  
-           key ={CoffeeStore.id}
-           name={CoffeeStore.name}
-           imgUrl={CoffeeStore.imgUrl ||
-             "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"}
-           href={`/coffee-store/${CoffeeStore.id}`}
+                key ={CoffeeStore.id}
+                name={CoffeeStore.name}
+                imgUrl={CoffeeStore.imgUrl ||
+               "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"}
+                href={`/coffee-store/${CoffeeStore.id}`}
            />
             );
             
-})}
+        })}
 
       </div>
-      </>
+      </div>
      ) }
       </main>
     
