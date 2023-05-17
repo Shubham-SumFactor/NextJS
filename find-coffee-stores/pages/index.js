@@ -41,10 +41,11 @@ const { CoffeeStores, latLong } = state;
 
  console.log({latLong, locationErrorMsg});
 
-  useEffect(async () => {
+  useEffect(() => {
+    async function setCoffeeStoresByLocation() {
     if(latLong){
       try{
-        const response = await fetch(`/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`);
+        const response = await fetch(`/api/getCoffeeStoreByLocation?latLong=${latLong}&limit=30`);
       
         const CoffeeStores = await response.json();
        
@@ -52,7 +53,7 @@ const { CoffeeStores, latLong } = state;
       dispatch({
         type: ACTIONS_TYPES.SET_COFFEE_STORES,
         payload: {
-          CoffeeStores
+          CoffeeStores,
         },
       });
       setCoffeeStoresError("");
@@ -62,10 +63,11 @@ const { CoffeeStores, latLong } = state;
         //set error
         console.log({error});
         setCoffeeStoresError(error.message);
-
+      }
       }
     }
-  },[latLong])
+    setCoffeeStoresByLocation();
+  },[dispatch, latLong]);
 
   const handleOnBannerBtnClick =() =>{
     console.log("Banner Button")
