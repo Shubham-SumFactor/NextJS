@@ -25,3 +25,10 @@ SERVERLESS FUNCTIONS
 >fn needs to be exported by default 
 >
 > every fn should be its own file.
+
+## Catch All routes
+>[...all]
+>
+> has less priority if other routes defined they are routed 1st
+>
+## SERVERLESS FN
