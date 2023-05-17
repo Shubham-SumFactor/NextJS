@@ -44,15 +44,18 @@ const { CoffeeStores } = state;
   useEffect(async () => {
     if(latLong){
       try{
-        const fetchedCoffeeStores = await fetchCoffeeStores(latLong, 30);
-        console.log({fetchedCoffeeStores});
+        const response = await fetch(`/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`);
+      
+        const CoffeeStores = await response.json();
+       
      //   setCoffeeStores(fetchedCoffeeStores);
       dispatch({
         type: ACTIONS_TYPES.SET_COFFEE_STORES,
         payload: {
-          coffeeStores: fetchedCoffeeStores
+          CoffeeStores
         },
-      })
+      });
+      setCoffeeStoresError("");
      //set coffee stores
       }
       catch(error){
