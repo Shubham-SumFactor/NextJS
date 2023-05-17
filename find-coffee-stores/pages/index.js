@@ -10,7 +10,7 @@ import { fetchCoffeeStores } from '../lib/coffee-store';
 import CoffeeStoresData from '../data/coffee-stores.json';
 import useTrackLocation from '../hooks/use-track-location';
 import { useState, useEffect, useContext } from 'react';
-import { ACTIONS_TYPES, StoreContext } from "./_app";
+import { ACTIONS_TYPES, StoreContext } from "../store/store-context";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,7 +37,7 @@ export default function Home(props) { //client side
  
  const { dispatch, state } = useContext(StoreContext);
 
-const { CoffeeStores } = state;
+const { CoffeeStores, latLong } = state;
 
  console.log({latLong, locationErrorMsg});
 
