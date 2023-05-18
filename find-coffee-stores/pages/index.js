@@ -1,3 +1,4 @@
+import React from "react"
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
@@ -92,7 +93,7 @@ const { CoffeeStores, latLong } = state;
     
       {locationErrorMsg && <p>Something Went Wrong:{locationErrorMsg}</p>}
 
-      {CoffeeStoresError && <p>Something Went Wrong:{CoffeeStoresError}</p>}
+      {CoffeeStoresError && <p>Something Wennt Wrong:{CoffeeStoresError}</p>}
      
      
      <div className={styles.heroImage}>
@@ -139,7 +140,7 @@ const { CoffeeStores, latLong } = state;
                 imgUrl={CoffeeStore.imgUrl ||
                "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"}
                 href={`/coffee-store/${CoffeeStore.id}`}
-                
+                className={styles.Card}
            />
             );
             
