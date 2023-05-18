@@ -11,7 +11,7 @@ import { fetchCoffeeStores } from '../lib/coffee-store';
 import CoffeeStoresData from '../data/coffee-stores.json';
 import useTrackLocation from '../hooks/use-track-location';
 import { useState, useEffect, useContext } from 'react';
-import { ACTIONS_TYPES, StoreContext } from "../store/store-context";
+import { ACTION_TYPES, StoreContext } from "../store/store-context";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -46,13 +46,13 @@ const { CoffeeStores, latLong } = state;
     async function setCoffeeStoresByLocation() {
     if(latLong){
       try{
-        const response = await fetch(`/api/getCoffeeStoreByLocation?latLong=${latLong}&limit=30`);
+        const response = await fetch(`/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`);
       
         const CoffeeStores = await response.json();
        
      //   setCoffeeStores(fetchedCoffeeStores);
       dispatch({
-        type: ACTIONS_TYPES.SET_COFFEE_STORES,
+        type: ACTION_TYPES.SET_COFFEE_STORES,
         payload: {
           CoffeeStores,
         },
