@@ -73,11 +73,11 @@ const CoffeeStore = (initialProps) =>{
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    id: `${id}`, 
+                    id, 
                     name,
                     address: address || "",
                     formatted_address: formatted_address || "",
-                    voting,
+                    voting: 0,
                     imgUrl 
                 }),
               });
@@ -106,9 +106,12 @@ const CoffeeStore = (initialProps) =>{
 
   
 
+            } else{
+              //staticSSG
+                handleCreateCoffeeStore(initialProps.CoffeeStore);
             }
         }
-    }, [id]);
+    }, [id, initialProps.CoffeeStore]);
 
     const {name, address , formatted_address, imgUrl} = CoffeeStore;
 
