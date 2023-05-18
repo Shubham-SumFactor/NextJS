@@ -4,3 +4,15 @@ const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base( process.
 const table = base("coffee-stores");
 
 console.log({ table });
+
+const createCoffeeStore = (req, res) => {
+console.log({req});
+
+if (req.method === 'POST' ){
+res.json({ message : "HI THere"});
+} else {
+    res.json({message: "method is GET"})
+}
+};
+
+export default createCoffeeStore;
