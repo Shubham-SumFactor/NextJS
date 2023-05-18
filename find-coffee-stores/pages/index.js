@@ -1,3 +1,4 @@
+import React from "react"
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
@@ -10,7 +11,7 @@ import { fetchCoffeeStores } from '../lib/coffee-store';
 import CoffeeStoresData from '../data/coffee-stores.json';
 import useTrackLocation from '../hooks/use-track-location';
 import { useState, useEffect, useContext } from 'react';
-import { ACTIONS_TYPES, StoreContext } from "./_app";
+import { ACTION_TYPES, StoreContext } from "../store/store-context";
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -37,11 +38,12 @@ export default function Home(props) { //client side
  
  const { dispatch, state } = useContext(StoreContext);
 
-const { CoffeeStores } = state;
+const { CoffeeStores, latLong } = state;
 
  console.log({latLong, locationErrorMsg});
 
-  useEffect(async () => {
+  useEffect(() => {
+    async function setCoffeeStoresByLocation() {
     if(latLong){
       try{
         const response = await fetch(`/api/getCoffeeStoresByLocation?latLong=${latLong}&limit=30`);
@@ -50,9 +52,9 @@ const { CoffeeStores } = state;
        
      //   setCoffeeStores(fetchedCoffeeStores);
       dispatch({
-        type: ACTIONS_TYPES.SET_COFFEE_STORES,
+        type: ACTION_TYPES.SET_COFFEE_STORES,
         payload: {
-          CoffeeStores
+          CoffeeStores,
         },
       });
       setCoffeeStoresError("");
@@ -62,10 +64,11 @@ const { CoffeeStores } = state;
         //set error
         console.log({error});
         setCoffeeStoresError(error.message);
-
+      }
       }
     }
-  },[latLong])
+    setCoffeeStoresByLocation();
+  },[dispatch, latLong]);
 
   const handleOnBannerBtnClick =() =>{
     console.log("Banner Button")
@@ -90,7 +93,7 @@ const { CoffeeStores } = state;
     
       {locationErrorMsg && <p>Something Went Wrong:{locationErrorMsg}</p>}
 
-      {CoffeeStoresError && <p>Something Went Wrong:{CoffeeStoresError}</p>}
+      {CoffeeStoresError && <p>Something Wennt Wrong:{CoffeeStoresError}</p>}
      
      
      <div className={styles.heroImage}>
@@ -137,6 +140,7 @@ const { CoffeeStores } = state;
                 imgUrl={CoffeeStore.imgUrl ||
                "https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"}
                 href={`/coffee-store/${CoffeeStore.id}`}
+                className={styles.Card}
            />
             );
             
