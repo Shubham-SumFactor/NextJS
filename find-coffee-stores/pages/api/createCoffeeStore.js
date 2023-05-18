@@ -5,13 +5,39 @@ const table = base("coffee-stores");
 
 console.log({ table });
 
-const createCoffeeStore = (req, res) => {
+const createCoffeeStore = async (req, res) => {
 console.log({req});
 
-if (req.method === 'POST' ){
-res.json({ message : "HI THere"});
-} else {
-    res.json({message: "method is GET"})
+ if (req.method === 'POST' ){
+//find a record
+ try{
+ const findCoffeeStoreRecords = await table.select(
+    {
+
+        filterByFormula: `id="0"`,
+    }
+ ).firstPage();
+
+ console.log({ findCoffeeStoreRecords})
+
+ if (findCoffeeStoreRecords.length !== 0){
+
+    const records = findCoffeeStoreRecords.map((record) =>{
+          return {
+            ...record.fields,
+        };
+    });
+    res.json(records);
+ } else {
+    //creating a record
+    res.json({ message: "create a record" });
+ }
+ 
+} catch (err) {
+    console.error('Error finding store', err);
+    res.status(500);
+    res.json({message: ' Error finding store', err });
+ }
 }
 };
 
