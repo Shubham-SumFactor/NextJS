@@ -113,11 +113,18 @@ const CoffeeStore = (initialProps) =>{
         }
     }, [id, initialProps.CoffeeStore]);
 
+
     const {name, address , formatted_address, imgUrl} = CoffeeStore;
 
+    const [votingCount, setVotingCount] = useState(1);
+    
     const handleUpvoteButton = () => {
-        console.log("handle Upvote")
-    }
+        console.log("handle Upvote");
+        let count = votingCount +1;
+
+        setVotingCount(count);
+    };
+    
     return (
     <div className={styles.layout}>
       
