@@ -40,7 +40,7 @@ export default function Home(props) { //client side
 
 const { CoffeeStores, latLong } = state;
 
- console.log({latLong, locationErrorMsg});
+ 
 
   useEffect(() => {
     async function setCoffeeStoresByLocation() {
@@ -62,7 +62,7 @@ const { CoffeeStores, latLong } = state;
       }
       catch(error){
         //set error
-        console.log({error});
+        
         setCoffeeStoresError(error.message);
       }
       }
@@ -71,7 +71,6 @@ const { CoffeeStores, latLong } = state;
   },[dispatch, latLong]);
 
   const handleOnBannerBtnClick =() =>{
-    console.log("Banner Button")
     handleTrackLocation();
 
   };

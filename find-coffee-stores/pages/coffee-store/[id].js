@@ -13,6 +13,7 @@ import { fetchCoffeeStores } from "../../lib/coffee-store";
 import {  useContext, useEffect, useState } from "react";
 import { StoreContext } from "../../store/store-context";
 import { isEmpty } from "@/utils";
+import { fetcher } from "@/lib/fetcher";
 
 
 export async function getStaticProps(staticProps){
@@ -46,13 +47,13 @@ export async function getStaticPaths() {
 
 const CoffeeStore = (initialProps) =>{
     const router = useRouter();
-    console.log("router", router); 
+
 
     if (router.isFallback){
         return <div>Loading....</div>
     }
 
-    console.log("props.CoffeeStore", initialProps.CoffeeStore);
+
 
     const id = router.query.id;
 
@@ -83,8 +84,8 @@ const CoffeeStore = (initialProps) =>{
                 }),
               });
 
-              const dbCoffeeStore = response.json();
-              console.log({ dbCoffeeStore })
+              const dbCoffeeStore = await response.json();
+           
 
         }catch (err){
             console.error('Error creating coffee store', err)
@@ -117,24 +118,46 @@ const CoffeeStore = (initialProps) =>{
 
     const {name, address , formatted_address, imgUrl} = CoffeeStore;
 
-    const [votingCount, setVotingCount] = useState(1);
+    const [votingCount, setVotingCount] = useState(0);
 
-    const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`);
+    const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`, fetcher);
 
     useEffect(() => {
         if (data && data.length > 0) {
-            console.log("data from SWR", data);
+ 
             setCoffeeStore(data[0]);
 
             setVotingCount(data[0].voting);
         }
     },[data]);
     
-    const handleUpvoteButton = () => {
-        console.log("handle Upvote");
-        let count = votingCount + 1;
+    const handleUpvoteButton = async () => {
+    
 
-        setVotingCount(count);
+        try{
+            const response = await fetch('/api/favouriteCoffeeStoreById', {
+                method: "PUT", // or 'PUT'
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    id, 
+
+                }),
+              });
+
+              const dbCoffeeStore = await response.json();
+            
+
+              if(dbCoffeeStore && dbCoffeeStore.length > 0){
+                let count = votingCount + 1;
+                setVotingCount(count);
+              }
+
+        }catch (err){
+            console.error('Error upvoting the coffee store', err)
+        }
+
     };
 
     if (error){
