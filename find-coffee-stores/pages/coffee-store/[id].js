@@ -132,7 +132,7 @@ const CoffeeStore = (initialProps) =>{
     
     const handleUpvoteButton = () => {
         console.log("handle Upvote");
-        let count = votingCount +1;
+        let count = votingCount + 1;
 
         setVotingCount(count);
     };
