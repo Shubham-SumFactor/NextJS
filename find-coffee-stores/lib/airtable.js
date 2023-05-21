@@ -13,5 +13,18 @@ const getMinifiedRecords = (records) => {
     return records = records.map((record) => getMinifiedRecord(record));
 }
 
-export { table, getMinifiedRecords };
+const findRecordByFilter = async (id) => {
+
+    const findCoffeeStoreRecords = await table.select(
+        {
+            filterByFormula: `id="${id}"`,
+        }).firstPage();
+
+
+               return getMinifiedRecords(findCoffeeStoreRecords);        
+
+            return [];
+};
+
+export { table, getMinifiedRecords, findRecordByFilter };
 
