@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import CoffeeStoreData from '../../data/coffee-stores.json'
 import Head from "next/head";
-
 import Image from "next/image";
+
+import useSWR from 'swr';
 
 import styles from '../../styles/coffee-store.module.css'
 import cls from "classnames";
@@ -117,6 +118,17 @@ const CoffeeStore = (initialProps) =>{
     const {name, address , formatted_address, imgUrl} = CoffeeStore;
 
     const [votingCount, setVotingCount] = useState(1);
+
+    const { data, error } = useSWR(`/api/getCoffeeStoreById?id=${id}`);
+
+    useEffect(() => {
+        if (data && data.length > 0) {
+            console.log("data from SWR", data);
+            setCoffeeStore(data[0]);
+
+            setVotingCount(data[0].voting);
+        }
+    },[data]);
     
     const handleUpvoteButton = () => {
         console.log("handle Upvote");
@@ -124,6 +136,10 @@ const CoffeeStore = (initialProps) =>{
 
         setVotingCount(count);
     };
+
+    if (error){
+        return <div>Something went wrong retrieving coffee store page</div>
+    }
     
     return (
     <div className={styles.layout}>
